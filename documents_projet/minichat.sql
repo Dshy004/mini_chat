@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: mysql-eslash.alwaysdata.net
--- Generation Time: Jan 07, 2025 at 10:10 PM
--- Server version: 10.11.9-MariaDB
--- PHP Version: 7.4.33
+-- Hôte : 127.0.0.1
+-- Généré le : sam. 12 juil. 2025 à 20:32
+-- Version du serveur : 10.4.32-MariaDB
+-- Version de PHP : 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `minichat`
+-- Base de données : `minichat`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `amis`
+-- Structure de la table `amis`
 --
 
 CREATE TABLE `amis` (
@@ -34,19 +34,10 @@ CREATE TABLE `amis` (
   `valide` enum('oui','non') NOT NULL DEFAULT 'non'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `amis`
---
-
-INSERT INTO `amis` (`id`, `idu_one`, `idu_two`, `valide`) VALUES
-(1, 2, 3, 'oui'),
-(2, 3, 4, 'oui'),
-(3, 3, 5, 'non');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chat`
+-- Structure de la table `chat`
 --
 
 CREATE TABLE `chat` (
@@ -64,7 +55,7 @@ CREATE TABLE `chat` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `historique`
+-- Structure de la table `historique`
 --
 
 CREATE TABLE `historique` (
@@ -74,19 +65,10 @@ CREATE TABLE `historique` (
   `dateAction` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `historique`
---
-
-INSERT INTO `historique` (`id`, `id_users`, `action`, `dateAction`) VALUES
-(1, 3, 'Déconnexion', '2025-01-01 19:08:57'),
-(2, 1, 'Connexion', '2025-01-06 21:48:10'),
-(3, 1, 'Déconnexion', '2025-01-06 21:49:01');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
@@ -102,22 +84,18 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `pseudo`, `email`, `password`, `type`, `online`, `discute`, `code_valid`, `dateCreate`) VALUES
-(1, 'slash', 'user', '$2y$10$ykRPA0D9K01UV5Jxzjl.tOlAP8KB6E7KWI4gjICr8T7JD.AdApRhS', 'admin', 'non', NULL, NULL, '2024-12-14 17:13:05'),
-(2, 'zozo', 'zozo@gmail.com', '$2y$10$Ymb7M9j/Eq6bn2wBGrCATOzpieiQg52uvbJG0YGjMCohb4wDlb.MK', 'users', 'non', NULL, NULL, '2024-12-14 19:25:54'),
-(3, 'serge', 'sergeharold1@gmail.com', '$2y$10$2wa7P7VgRQDuv/uSMeZhfuExM772oSj6HzWxaXesOlNU2BRz49g7i', 'users', 'non', NULL, NULL, '2024-12-14 19:25:54'),
-(4, 'ismath', 'ismathmalehossou@gmail.com', '$2y$10$IwcOjQfCXWSzBc1kRh7cTu3hZM6zC0FvVWQUSxxQ8kXMrTlGapwBC', 'users', 'non', NULL, NULL, '2024-12-15 14:23:48'),
-(5, 'Titila', 'Titiland07@gmail.com', '$2y$10$8EiJ6/KSjkxWpSxjb9Q85.eg/HQHx/MJIXr9e0MLF9Y462yxnmdQy', 'users', 'non', NULL, NULL, '2024-12-15 16:32:55');
+(1, 'slash', 'user', '$2y$10$zIiZqklguaED7qL6s85pRuKY0b6gU2PU98BqT01d.JQdvdaEBMZ52', 'admin', 'non', NULL, NULL, '2024-12-14 17:13:05');
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `amis`
+-- Index pour la table `amis`
 --
 ALTER TABLE `amis`
   ADD PRIMARY KEY (`id`),
@@ -125,7 +103,7 @@ ALTER TABLE `amis`
   ADD KEY `fk_two` (`idu_two`);
 
 --
--- Indexes for table `chat`
+-- Index pour la table `chat`
 --
 ALTER TABLE `chat`
   ADD PRIMARY KEY (`id`),
@@ -133,66 +111,66 @@ ALTER TABLE `chat`
   ADD KEY `fk_receiver` (`id_receiver`);
 
 --
--- Indexes for table `historique`
+-- Index pour la table `historique`
 --
 ALTER TABLE `historique`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_users` (`id_users`);
 
 --
--- Indexes for table `users`
+-- Index pour la table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `amis`
+-- AUTO_INCREMENT pour la table `amis`
 --
 ALTER TABLE `amis`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `chat`
+-- AUTO_INCREMENT pour la table `chat`
 --
 ALTER TABLE `chat`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `historique`
+-- AUTO_INCREMENT pour la table `historique`
 --
 ALTER TABLE `historique`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `amis`
+-- Contraintes pour la table `amis`
 --
 ALTER TABLE `amis`
   ADD CONSTRAINT `fk_one` FOREIGN KEY (`idu_one`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_two` FOREIGN KEY (`idu_two`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `chat`
+-- Contraintes pour la table `chat`
 --
 ALTER TABLE `chat`
   ADD CONSTRAINT `fk_receiver` FOREIGN KEY (`id_receiver`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_sender` FOREIGN KEY (`idu`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `historique`
+-- Contraintes pour la table `historique`
 --
 ALTER TABLE `historique`
   ADD CONSTRAINT `fk_users` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
