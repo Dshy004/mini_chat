@@ -50,6 +50,7 @@
     <title>Mini_chat - by Webdshy</title>
     <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <?php 
     if(isset($_POST["login"]) || isset($error) || isset($_GET["sms"])) {
 ?>
@@ -71,9 +72,8 @@
             justify-content: center;
             background-color: var(--white);
         }
-        .load img {
-            width: 150px;
-            height: 150px;
+        .load i {
+            font-size: 5vw;
             animation: slideImg 1s linear infinite;
         }
         @keyframes slideImg {
@@ -92,9 +92,9 @@
 ?>
 </head>
 <body>
-    <div class="load"><img src="./assets/img/load_logo.png" alt="Load Logo"></div>
+    <div class="load"><i class="fas fa-comments"></i></div>
     <div class="container">
-        <a href="./" class="left"><img src="./assets/img/logo.png" alt="Mini_chat Logo"> <h1>Mini_chat</h1></a>
+        <a href="./" class="left"><i class="fas fa-comments"></i> <h1>Mini_chat</h1></a>
         <form method="POST" class="right">
             <div class="input">
                 <label for="pseudo">Votre pseudo</label>

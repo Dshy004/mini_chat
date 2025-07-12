@@ -61,9 +61,8 @@ button {
   align-items: center;
   justify-content: center;
 }
-.container .left img {
-  width: 250px;
-  height: 250px;
+.container .left i {
+  font-size: 8rem;
 }
 .container .left h1 {
   color: var(--white);
@@ -116,17 +115,8 @@ button {
     width: 100%;
     padding: 20px;
   }
-  .container .left {
-    border-radius: 25px;
-    display: flex;
-    flex-direction: row;
-    gap: 0;
-    align-items: center;
-    justify-content: center;
-  }
-  .container .left img {
-    width: 75px;
-    height: 75px;
+  .container .left i {
+    font-size: 4rem;
   }
   .container .left h1 {
     font-size: 1.5rem;

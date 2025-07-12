@@ -1,4 +1,6 @@
 <?php
+    $from = "maildusite@mail.com";
+    
     // Demander amitié
     if(isset($_POST["dev_amis"])) {
         if(!empty($_POST["id"])) {
@@ -14,36 +16,35 @@
                 $select_mail->execute([$id_users]);
 
                 if($rsm = $select_mail->fetch()) {
-                    $to = $rsm["email"];
-                    $subject = "Eslash";
-                    $message = '<html>
-                                    <head>
-                                        <title>Code de validation duc ompte</title>
-                                    </head>
-                                    <body>
-                                        <div class="container" style="width: 100%; max-width: 700px; margin: 0 auto; padding: 20px;">
-                                            <h2><b>@' . $rsmc["pseudo"] . '</b> vous a envoyé une invitation.</h2>
-                                            <a href="https://eslash.alwaysdata.net">Connectez-vous</a> pour valider ou non la demande.
-                                        </div>
-                                    </body>
-                                </html>';
+                    $add_history = $bdd->prepare("INSERT INTO amis(idu_one, idu_two) VALUES(?,?)");
+                    $add_history->execute([$rsmc["id"], $rsese["id"]]);
     
-                    $headers = "MIME-Version: 1.0" . "\r\n";
-                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                    $headers .= "From: slash@vomoto.com" . "\r\n";
-                    $headers .= "CC: ".$to;
+                    // $to = $rsm["email"];
+                    // $subject = "Mini_chat";
+                    // $message = '<html>
+                    //                 <head>
+                    //                     <title>Code de validation duc ompte</title>
+                    //                 </head>
+                    //                 <body>
+                    //                     <div class="container" style="width: 100%; max-width: 700px; margin: 0 auto; padding: 20px;">
+                    //                         <h2><b>@' . $rsmc["pseudo"] . '</b> vous a envoyé une invitation.</h2>
+                    //                         <a href="lien_de_votre_site">Connectez-vous</a> pour valider ou non la demande.
+                    //                     </div>
+                    //                 </body>
+                    //             </html>';
     
-                    $send = mail($to,$subject,$message,$headers);
+                    // $headers = "MIME-Version: 1.0" . "\r\n";
+                    // $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                    // $headers .= "From: " . $from . "\r\n";
+                    // $headers .= "CC: ".$to;
     
-                    if ($send) {
-                        $add_history = $bdd->prepare("INSERT INTO amis(idu_one, idu_two) VALUES(?,?)");
-                        $add_history->execute([$rsmc["id"], $rsese["id"]]);
-        
-                        header('Location: ./');
-                        exit();
-                    } else {
-                        $error[] = "Demande d'amis échouée !";
-                    }
+                    // $send = mail($to,$subject,$message,$headers);
+    
+                    // if ($send) {
+                        header('Location: ./'); exit();
+                    // } else {
+                    //     $error[] = "Demande d'amis échouée !";
+                    // }
                 } else {
                     $error[] = "Demande d'amis échouée !";
                 }
@@ -67,35 +68,34 @@
                 $select_mail->execute([$id_users]);
 
                 if($rsm = $select_mail->fetch()) {
-                    $to = $rsm["email"];
-                    $subject = "Eslash";
-                    $message = '<html>
-                                    <head>
-                                        <title>Code de validation duc ompte</title>
-                                    </head>
-                                    <body>
-                                        <div class="container" style="width: 100%; max-width: 700px; margin: 0 auto; padding: 20px;">
-                                            <h2><b>@' . $rsmc["pseudo"] . '</b> a accepté votre invitation</h2>
-                                        </div>
-                                    </body>
-                                </html>';
+                    $add_history = $bdd->prepare("UPDATE amis SET valide = ? WHERE id = ?");
+                    $add_history->execute(["oui", $rsese["id"]]);
     
-                    $headers = "MIME-Version: 1.0" . "\r\n";
-                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                    $headers .= "From: slash@vomoto.com" . "\r\n";
-                    $headers .= "CC: ".$to;
+                    // $to = $rsm["email"];
+                    // $subject = "Mini_chat";
+                    // $message = '<html>
+                    //                 <head>
+                    //                     <title>Code de validation duc ompte</title>
+                    //                 </head>
+                    //                 <body>
+                    //                     <div class="container" style="width: 100%; max-width: 700px; margin: 0 auto; padding: 20px;">
+                    //                         <h2><b>@' . $rsmc["pseudo"] . '</b> a accepté votre invitation</h2>
+                    //                     </div>
+                    //                 </body>
+                    //             </html>';
     
-                    $send = mail($to,$subject,$message,$headers);
+                    // $headers = "MIME-Version: 1.0" . "\r\n";
+                    // $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                    // $headers .= "From: " . $from . "\r\n";
+                    // $headers .= "CC: ".$to;
     
-                    if ($send) {
-                        $add_history = $bdd->prepare("UPDATE amis SET valide = ? WHERE id = ?");
-                        $add_history->execute(["oui", $rsese["id"]]);
-        
-                        header('Location: ./');
-                        exit();
-                    } else {
-                        $error[] = "Echouée !";
-                    }
+                    // $send = mail($to,$subject,$message,$headers);
+    
+                    // if ($send) {
+                        header('Location: ./'); exit();
+                    // } else {
+                    //     $error[] = "Echouée !";
+                    // }
                 } else {
                     $error[] = "Echouée !";
                 }
@@ -118,8 +118,7 @@
                 $add_history = $bdd->prepare("DELETE FROM amis WHERE idu_one = ? AND idu_two = ?");
                 $add_history->execute([$rsese["idu_one"], $rsmc["id"]]);
     
-                header('Location: ./');
-                exit();
+                header('Location: ./'); exit();
             } else {
                 $error[] = "Echouée !";
             }
@@ -139,8 +138,7 @@
                 $add_history = $bdd->prepare("DELETE FROM amis WHERE idu_one = ? AND idu_two = ?");
                 $add_history->execute([$rsmc["id"], $rsese["idu_two"]]);
     
-                header('Location: ./');
-                exit();
+                header('Location: ./'); exit();
             } else {
                 $error[] = "Echouée !";
             }
@@ -163,8 +161,7 @@
                 $up_history = $bdd->prepare("UPDATE users SET discute = ? WHERE id = ?");
                 $up_history->execute([null, $rsmc["id"]]);
 
-                header('Location: ./');
-                exit();
+                header('Location: ./'); exit();
             } else {
                 $error[] = "Echouée !";
             }
@@ -197,7 +194,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eslash - <?= htmlspecialchars($rsmc["pseudo"]) ?></title>
+    <title>Mini_chat - <?= htmlspecialchars($rsmc["pseudo"]) ?></title>
     <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/account.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
@@ -293,10 +290,7 @@
     }
 ?>
         <div class="head">
-            <a href="./" class="profil">
-                <img src="../assets/img/logo.png" alt="Eslash Logo">
-                <h2>@<?= htmlspecialchars($rsmc["pseudo"]) ?></h2>
-            </a>
+            <a href="./" class="profil"><h2>@<?= htmlspecialchars($rsmc["pseudo"]) ?></h2></a>
             <div style="display: flex; flex-direction: row; gap: 10px;">
                 <button v-show="btnU" @click="showListU" style="background-color: var(--blue); padding: 10px; border-radius: 5px; color: var(--white);"><i class="fas fa-users"></i></button>
                 <form method="post" class="form_logout"><button type="submit" name="logout"><i class="fas fa-sign-out-alt"></i></button></form>
@@ -359,7 +353,7 @@
                 <form method="post" class="form_chat">
                     <input type="hidden" name="id" value="<?= htmlspecialchars(encrypt($rsem["id"], $key)); ?>">
                     <textarea name="new_text" placeholder="Tapez votre message..." required><?= htmlspecialchars_decode(trim($rsem["message"])); ?></textarea>
-                    <button type="submit" name="app_modify_sms"><i class="fas fa-check"></i> <span>Enregistrer</span> <img src="../assets/img/logo.png" alt=""></button>
+                    <button type="submit" name="app_modify_sms"><i class="fas fa-check"></i> <span>Enregistrer</span></button>
                 </form>
 <?php
                     } else {
@@ -381,21 +375,21 @@
                     </div>
                     <input type="hidden" name="id" value="<?= htmlspecialchars(encrypt($rsew["id"], $key)); ?>">
                     <textarea name="message" placeholder="Tapez votre message..."></textarea>
-                    <button type="submit" name="send_sms"><i class="fas fa-paper-plane"></i> <span>Envoyer</span> <img src="../assets/img/logo.png" alt=""></button>
+                    <button type="submit" name="send_sms"><i class="fas fa-paper-plane"></i> <span>Envoyer</span></button>
                 </form>
 <?php
             }
         }else {
 ?>
                 <div class="home">
-                    <img src="../assets/img/logo.png" alt="Eslash Logo">
+                    <i class="fas fa-comments" style="font-size: 8rem; color: var(--white);"></i>
                 </div>
 <?php
         }
     }else {
 ?>
                 <div class="home">
-                    <img src="../assets/img/logo.png" alt="Eslash Logo">
+                    <i class="fas fa-comments" style="font-size: 8rem; color: var(--white);"></i>
                 </div>
 <?php
     }

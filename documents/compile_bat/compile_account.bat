@@ -1,1 +1,0 @@
-./dart-sass/sass sass/account.scss account.css --watch --style compressed

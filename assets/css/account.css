@@ -69,10 +69,8 @@ button {
   width: 75%;
 }
 
-.head a img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+.head a i {
+  font-size: 2rem;
   margin: 0 10px 0 0;
 }
 
@@ -294,13 +292,6 @@ button {
   justify-content: center;
 }
 
-.discussion .form_chat button[type=submit] img {
-  display: none;
-  width: 25px;
-  width: 25px;
-  border-radius: 50%;
-}
-
 .discussion .form_chat button[type=submit]:focus {
   background-color: var(--darkgreen);
 }
@@ -309,11 +300,6 @@ button {
 .form_chat button[type=submit]:focus .fa-paper-plane,
 .form_chat button[type=submit]:focus span {
   display: none;
-}
-
-.form_chat button[type=submit]:focus img {
-  display: block;
-  animation: ChargeI 0.5s ease-in-out infinite;
 }
 
 @keyframes ChargeI {
@@ -338,15 +324,13 @@ button {
   justify-content: center;
 }
 
-.discussion .home img {
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  border: 10px solid var(--white);
-  animation: slideImg 2s linear infinite;
+.discussion .home i {
+  font-size: 8rem;
+  color: var(--white);
+  animation: slideIcon2s linear infinite;
 }
 
-@keyframes slideImg {
+@keyframes slideIcon{
   0% {
     transform: translateY(10px);
   }
@@ -375,9 +359,8 @@ button {
   .list .person .name_person {
     word-wrap: wrap;
   }
-  .discussion .home img {
-    width: 150px;
-    height: 150px;
+  .discussion .home i {
+    font-size: 8rem;
   }
   .discussion .contain :where(.you .text, .you .date, .me .text_forms .text, .me .date) {
     width: auto;

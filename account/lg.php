@@ -8,10 +8,8 @@
         session_unset();
         session_destroy();
 
-        echo json_encode(["status" => "success"]);
-        exit();
+        echo json_encode(["status" => "success"]); exit();
     } else {
-        echo json_encode(["status" => "no_session"]);
-        exit();
+        echo json_encode(["status" => "no_session"]); exit();
     }
 ?>

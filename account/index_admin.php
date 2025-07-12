@@ -11,42 +11,43 @@
                 $pseudo = substr($email, 0, 6);
                 $password = password_hash($ms_code, PASSWORD_BCRYPT);
 
-                $to = $email;
-                $subject = "Eslash";
-                $message = '<html>
-                                <head>
-                                    <title>Code de validation duc ompte</title>
-                                </head>
-                                <body>
-                                    <div class="container" style="width: 100%; max-width: 700px; margin: 0 auto; padding: 20px;">
-                                        <h3>Compte créée avec succès, Voici les indentifiants de votre compte:</h3>
-                                        <ul>
-                                            <li>Pseudo: ' . $pseudo . '</li>
-                                            <li>Mot de passe: ' . $ms_code . '</li>
-                                        </ul>
-                                        <a href="https://eslash.alwaysdata.net">Connectez-vous</a> pour accéder à votre compte
-                                    </div>
-                                </body>
-                            </html>';
+                $insert_users = $bdd->prepare("INSERT INTO users(pseudo, email, `password`) VALUES(?,?,?)");
+                $insert_users->execute([$pseudo, $email, $password]);
 
-                $headers = "MIME-Version: 1.0" . "\r\n";
-                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                $headers .= "From: slash@vomoto.com" . "\r\n";
-                $headers .= "CC: ".$to;
+                $add_history = $bdd->prepare("INSERT INTO historique(id_users, `action`) VALUES(?,?)");
+                $add_history->execute([$rsmc["id"], "a ajouté un nouvel utilisateur"]);
 
-                $send = mail($to,$subject,$message,$headers);
+                // $from = "maildusite@mail.com";
+                // $to = $email;
+                // $subject = "Mini_chat";
+                // $message = '<html>
+                //                 <head>
+                //                     <title>Code de validation duc ompte</title>
+                //                 </head>
+                //                 <body>
+                //                     <div class="container" style="width: 100%; max-width: 700px; margin: 0 auto; padding: 20px;">
+                //                         <h3>Compte créée avec succès, Voici les indentifiants de votre compte:</h3>
+                //                         <ul>
+                //                             <li>Pseudo: ' . $pseudo . '</li>
+                //                             <li>Mot de passe: ' . $ms_code . '</li>
+                //                         </ul>
+                //                         <a href="lien_de_votre_site">Connectez-vous</a> pour accéder à votre compte
+                //                     </div>
+                //                 </body>
+                //             </html>';
 
-                if($send) {
-                    $insert_users = $bdd->prepare("INSERT INTO users(pseudo, email, `password`) VALUES(?,?,?)");
-                    $insert_users->execute([$pseudo, $email, $password]);
-    
-                    $add_history = $bdd->prepare("INSERT INTO historique(id_users, `action`) VALUES(?,?)");
-                    $add_history->execute([$rsmc["id"], "a ajouté un nouvel utilisateur"]);
-    
+                // $headers = "MIME-Version: 1.0" . "\r\n";
+                // $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                // $headers .= "From: " . $from . "\r\n";
+                // $headers .= "CC: ".$to;
+
+                // $send = mail($to,$subject,$message,$headers);
+
+                // if($send) {
                     echo '<script>alert("Utilisateur ajouté avec succès !");</script>';
-                }else {
-                    echo '<script>alert("Inscription échouée !");</script>';
-                }
+                // }else {
+                //     echo '<script>alert("Utilisateur ajouté avec succès, mais l\'envoi de l\'email a échoué !");</script>';
+                // }
             } else {
                 echo '<script>alert("Cet email existe déjà !");</script>';
             }
@@ -112,7 +113,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eslash - Admin</title>
+    <title>Mini_chat - Admin</title>
     <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">

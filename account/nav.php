@@ -1,7 +1,5 @@
 <nav>
-    <a href="./" class="name">
-        <img src="../assets/img/logo.png" alt="Eslash Logo">
-    </a>
+    <a href="./" class="name"><i class="fas fa-comments"></i></a>
     <div class="menu">
         <form method="post"><button type="submit" name="user"><i class="fas fa-user"></i></button></form>
         <form method="post"><button type="submit" name="clock"><i class="fas fa-clock"></i></button></form>

@@ -14,34 +14,35 @@
             $update_users = $bdd->prepare("UPDATE users SET `password` = ?, `type` = ? WHERE id = ?");
             $update_users->execute([$password, "users", $rsese["id"]]);
 
-            $to = $rsese["email"];
-            $subject = "Eslash";
-            $message = '<html>
-                            <head>
-                                <title>Code de validation duc ompte</title>
-                            </head>
-                            <body>
-                                <div class="container" style="width: 100%; max-width: 700px; margin: 0 auto; padding: 20px;">
-                                    <h3>Votre compte a été réactivé avec un nouveau mot de passe: <b>'. $ms_code .'</b></h3>      
-                                </div>
-                            </body>
-                        </html>';
+            $add_history = $bdd->prepare("INSERT INTO historique(id_users, `action`) VALUES(?,?)");
+            $add_history->execute([$rsmc["id"], "a réactivé @" . $rsese["pseudo"]]);
 
-            $headers = "MIME-Version: 1.0" . "\r\n";
-            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-            $headers .= "From: slash@vomoto.com" . "\r\n";
-            $headers .= "CC: ".$to;
+            // $from = "maildusite@mail.com";
+            // $to = $rsese["email"];
+            // $subject = "Eslash";
+            // $message = '<html>
+            //                 <head>
+            //                     <title>Code de validation duc ompte</title>
+            //                 </head>
+            //                 <body>
+            //                     <div class="container" style="width: 100%; max-width: 700px; margin: 0 auto; padding: 20px;">
+            //                         <h3>Votre compte a été réactivé avec un nouveau mot de passe: <b>'. $ms_code .'</b></h3>      
+            //                     </div>
+            //                 </body>
+            //             </html>';
 
-            $send = mail($to,$subject,$message,$headers);
+            // $headers = "MIME-Version: 1.0" . "\r\n";
+            // $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            // $headers .= "From: " . $from . "\r\n";
+            // $headers .= "CC: ".$to;
 
-            if ($send) {
-                $add_history = $bdd->prepare("INSERT INTO historique(id_users, `action`) VALUES(?,?)");
-                $add_history->execute([$rsmc["id"], "a réactivé @" . $rsese["pseudo"]]);
+            // $send = mail($to,$subject,$message,$headers);
 
+            // if ($send) {
                 echo '<script>alert("Utilisateur réactivé avec succès !");</script>';
-            }else {
-                echo '<script>alert("Envoie du mail de réactivation échouée !");</script>';
-            }
+            // }else {
+            //     echo '<script>alert("Envoie du mail de réactivation échouée !");</script>';
+            // }
         } else {
             echo '<script>alert("Réactivation échouée !");</script>';
         }
@@ -55,7 +56,7 @@
     <title>Eslash - Admin</title>
     <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
         nav .menu form:nth-child(3) button {
             background-color: var(--white);

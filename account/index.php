@@ -15,8 +15,7 @@
         // Détruire la session si l'utilisateur n'est pas connecté
         session_unset();
         session_destroy();
-        header('Location: ../');
-        exit();
+        header('Location: ../'); exit();
     }
 
     $smc = $bdd->prepare("SELECT id, pseudo, email, `type`, discute FROM users WHERE id = ?");
@@ -33,8 +32,7 @@
 
             session_unset();
             session_destroy();
-            header('Location: ../');
-            exit();
+            header('Location: ../'); exit();
         }
 
         // Définir les rôles
@@ -48,19 +46,16 @@
                 $update_admin_mail = $bdd->prepare("UPDATE users SET email = ? WHERE id = ?");
                 $update_admin_mail->execute(["user", $_SESSION["id"]]);
 
-                header("Location: ./");
-                exit();
+                header("Location: ./"); exit();
             }else if (isset($_POST["clock"])) {
                 $update_admin_mail = $bdd->prepare("UPDATE users SET email = ? WHERE id = ?");
                 $update_admin_mail->execute(["clock", $_SESSION["id"]]);
-                header("Location: ./");
-                exit();
+                header("Location: ./"); exit();
             }else if (isset($_POST["user_slash"])) {
                 $update_admin_mail = $bdd->prepare("UPDATE users SET email = ? WHERE id = ?");
                 $update_admin_mail->execute(["user_slash", $_SESSION["id"]]);
 
-                header("Location: ./");
-                exit();
+                header("Location: ./"); exit();
             }
 
             if($rsmc["email"] === "user") {
@@ -74,14 +69,12 @@
             // Déconnecter les utilisateurs avec un rôle invalide
             session_unset();
             session_destroy();
-            header('Location: ../');
-            exit();
+            header('Location: ../'); exit();
         }
     } else {
         // Déconnecter si aucun utilisateur n'est trouvé
         session_unset();
         session_destroy();
-        header('Location: ../');
-        exit();
+        header('Location: ../'); exit();
     }
 ?>
