@@ -1,0 +1,1 @@
+./dart-sass/sass sass/admin.scss admin.css --watch --style compressed

@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap");
+
+:root {
+    --white: #f2f2f2;
+    --black: #323232;
+    --blue: #120A86;
+    --red: #ab2121;
+    --green: #2a6b12;
+    --orange: #cc7606;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    resize: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+button, input[type=submit] {
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    height: 100%;
+    width: 100vw;
+    padding: 20px;
+
+    nav {
+        background-color: var(--blue);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        width: 6%;
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    section {
+        width: 94%;
+
+        .form_add {
+            width: 100%;
+            margin: 0 0 20px 0;
+            padding: 10px 0 0 0;
+        }
+        
+        .table_users {
+            width: 100%;
+        }
+    }
+}
+nav .name img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid var(--white);
+}
+nav .menu form {
+    width: 100%;
+    margin: 10px 0;
+}
+.menu form button {
+    background-color: var(--blue);
+    color: var(--white);
+    width: 100%;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 15px 10px;
+    text-align: center;
+
+    &:hover {
+        background-color: var(--white);
+        color: var(--blue);
+        border-radius: 10px;
+    }
+}
+nav .form_logout button {
+    width: 100%;
+    background-color: var(--red);
+    color: var(--white);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+section .form_add h3 {
+    margin: 0 0 10px 0;
+}
+section .form_add .input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.form_add .input input[name=email] {
+    flex: 2;
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+}
+.form_add .input input[type=submit] {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    background-color: var(--green);
+    color: var(--white);
+    font-weight: 600;
+    border-radius: 0 5px 5px 0;
+}
+
+section .table_users .form_search {
+    width: 100%;
+    margin: 10px 0 0 0;
+    padding: 0 0 20px 0;
+    border-bottom: 2px solid var(--blue);
+}
+.table_users .form_search h3 {
+    margin: 0 0 10px 0;
+}
+.table_users .form_search .input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.form_search .input input[type=text] {
+    flex: 2;
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+}
+.form_search .input input[type=submit] {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    background-color: var(--green);
+    color: var(--white);
+    font-weight: 600;
+    border-radius: 0 5px 5px 0;
+}
+section .table_users .users {
+    width: 100%;
+    overflow: auto;
+}
+.table_users .users table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table tr th {
+    padding: 10px;
+    text-align: start;
+    background-color: var(--blue);
+    color: var(--white);
+}
+table tr td {
+    border-bottom: 1px solid var(--blue);
+    padding: 10px;
+}
+
+/* Responsive styles */
+@media (max-width: 1250px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+
+        nav {
+            width: 100%;
+            flex-direction: row;
+            justify-content: space-around;
+            padding: 10px;
+
+            .menu {
+                flex-direction: row;
+                gap: 15px;
+            }
+        }
+
+        section {
+            width: 100%;
+        }
+    }
+
+    table tr td, table tr th {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    nav .name img {
+        width: 35px;
+        height: 35px;
+    }
+    .menu form button {
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+
+    .form_add .input input[name=email],
+    .form_search .input input[type=text] {
+        padding: 5px;
+    }
+    .form_add .input input[type=submit],
+    .form_search .input input[type=submit] {
+        padding: 5px;
+    }
+    table tr td,
+    table tr th {
+        font-size: 0.7rem;
+        padding: 5px;
+    }
+}

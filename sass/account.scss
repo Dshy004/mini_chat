@@ -1,0 +1,344 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap");
+
+:root {
+    --white: #f2f2f2;
+    --black: #323232;
+    --blue: #120A86;
+    --red: #ab2121;
+    --green: #2a6b12;
+    --darkgreen: #0e2a04;
+    --orange: #cc7606;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    resize: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    width: 100%;
+    max-width: 1300px;
+    padding: 20px;
+
+    .head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 0 20px 0;
+        
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    .users_discussion {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        align-items: start;
+        justify-content: space-between;
+
+        .users {
+            width: 25%;
+        }
+
+        .discussion {
+            width: 75%;
+        }
+    }
+}
+.head a img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 10px 0 0;
+}
+.head a h2 {
+    font-size: 1.2rem;
+    color: var(--blue);
+}
+.head .form_logout button {
+    background-color: var(--red);
+    color: var(--white);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.users_discussion .users h3,
+.users_discussion .discussion h3 {
+    font-size: .8rem;
+}
+.users_discussion .users .form_search {
+    margin: 10px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.users .form_search input,
+.users .form_search button {
+    padding: 15px;
+}
+.users .form_search input {
+    flex: 2.8;
+    border-radius: 10px 0 0 10px;
+}
+.users .form_search button {
+    flex: 0.2;
+    background-color: var(--green);
+    color: var(--white);
+    border-radius: 0 10px 10px 0;
+}
+.users_discussion .users .list {
+    padding: 20px;
+    background-color: var(--blue);
+    border-radius: 10px;
+    margin: 10px 0 0 0;
+    height: 63.85vh;
+    overflow: auto;
+    width: 100%;
+}
+.users .list .person {
+    background-color: var(--white);
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0 0 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.list .person .name_person {
+    font-size: .8rem;
+    font-weight: bold;
+}
+.person form button {
+    font-size: .7rem;
+    color: var(--white);
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.users_discussion .discussion .contain {
+    border: 2px solid var(--blue);
+    margin: 10px 0 20px 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 60vh;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+}
+.users_discussion .discussion .form_chat {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+.discussion .contain :where(.you, .me) {
+    width: 100%;
+    margin: 0 0 15px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.discussion .contain :where(.you .text, .me .text_forms .text) {
+    padding: 10px;
+    border-radius: 10px;
+    font-size: .8rem;
+    word-wrap: wrap;
+    word-break: break-all;
+}
+.discussion .contain :where(.you .text, .you .date, .me .text_forms .text, .me .date) {
+    width: auto;
+    max-width: 425px;
+}
+.contain .you .date,
+.contain .me .date {
+    font-size: .5rem;
+}
+.contain .me .text_forms {
+    display: flex;
+    align-items: start;
+    justify-content: end;
+}
+.me .text_forms .forms {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 10px;
+}
+.text_forms .forms form button {
+    background-color: transparent;
+}
+.discussion .contain .you {
+    align-items: start;
+    justify-content: start;
+}
+.contain .you .text {
+    border: 2px solid var(--green);
+}
+.discussion .contain .me {
+    align-items: end;
+    justify-content: end;
+}
+.contain .me .text {
+    border: 2px solid var(--black);
+}
+.contain .me .date_forms {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.me .date_forms .date {
+    margin: 0 15px 0 0;
+}
+.contain .me .forms {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.me .forms form {
+    margin: 0 5px;
+}
+.forms form button {
+    font-size: 1rem;
+}
+
+.discussion .form_chat .others_btn {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+.others_btn .btn label {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.others_btn .btn input {
+    display: none;
+}
+.discussion .form_chat textarea,
+.discussion .form_chat button[type="submit"] {
+    border-radius: 10px;
+    padding: 15px;
+}
+.discussion .form_chat textarea {
+    flex: 2.8;
+}
+.discussion .form_chat button[type="submit"] {
+    flex: 0.2;
+    background-color: var(--green);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+.discussion .form_chat button[type="submit"] img {
+    display: none;
+    width: 25px;
+    width: 25px;
+    border-radius: 50%;
+}
+.discussion .form_chat button[type="submit"]:focus {
+    background-color: var(--darkgreen);
+}
+.form_chat button[type="submit"]:focus .fa-check,
+.form_chat button[type="submit"]:focus .fa-paper-plane,
+.form_chat button[type="submit"]:focus span {
+    display: none;
+}
+.form_chat button[type="submit"]:focus img {
+    display: block;
+    animation: ChargeI 0.5s ease-in-out infinite;
+}
+@keyframes ChargeI {
+    0% { transform: scale(0.5); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(0.8); }
+}
+
+.users_discussion .discussion .home {
+    background-color: var(--blue);
+    margin: 10px 0 0 0;
+    height: 74.5vh;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.discussion .home img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 10px solid var(--white);
+    animation: slideImg 2s linear infinite;
+}
+@keyframes slideImg {
+    0% { transform: translateY(10px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(10px); }
+}
+
+@media screen and (max-width: 1000px) {
+    .container .users_discussion {
+        flex-direction: column;
+
+        .users, .discussion {
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .users .form_search input {
+        border-radius: 10px;
+    }
+    .users .form_search button {
+        display: none;
+    }
+    .list .person .name_person {
+        word-wrap: wrap;
+    }
+    .discussion .home img {
+        width: 150px;
+        height: 150px;
+    }
+    .discussion .contain :where(.you .text, .you .date, .me .text_forms .text, .me .date) {
+        width: auto;
+        max-width: 225px;
+    }
+}

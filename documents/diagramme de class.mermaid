@@ -1,0 +1,99 @@
+classDiagram
+    class Garderies {
+        +id: int
+        +nom_garderie: varchar(255)
+        +email_garderie: text
+        +tiktok_garderie: text
+        +insta_garderie: text
+        +linkedin_garderie: text
+        +gps_garderie: text
+        +tel_one: varchar(255)
+        +tel_two: varchar(255)
+        +prix_mensuel: decimal(10,2)
+        +prix_periodique: decimal(10,2)
+        +prix_spontane: decimal(10,2)
+        +date_creation: date
+        +status: enum('actif','inactif','essaie')
+        +d_mode: date
+        +f_mode: date
+    }
+
+    class Users {
+        +id: int
+        +garderie_id: int
+        +email: varchar(255)
+        +nom_prenoms: varchar(255)
+        +tel: varchar(255)
+        +password: varchar(255)
+        +role: enum('creator','admin','employe','parent')
+        +status: enum('en ligne','hors ligne','inactif')
+        +code: int(6)
+        +date: datetime
+    }
+
+    class Enfants {
+        +id: int
+        +parent_id: int
+        +nom_prenoms: varchar(255)
+        +important: text
+        +date: datetime
+    }
+
+    class Abonnements {
+        +id: int
+        +num_abo: varchar(10)
+        +parent_id: int
+        +enfant_id: int
+        +type: enum('mensuel','periodique','spontane')
+        +prix_type: decimal(10,2)
+        +jours_semaine: varchar(50)
+        +date_debut: datetime
+        +date_fin: datetime
+        +status: enum('en cours','finit','supprime')
+    }
+
+    class Presences {
+        +id: int
+        +enfant_id: int
+        +garderie_id: int
+        +date: date
+        +heure_arrivee: time
+        +deposeur: varchar(255)
+        +heure_depart: time
+        +chercheur: varchar(255)
+    }
+
+    class Avis {
+        +id: int
+        +user_id: int
+        +garderie_id: int
+        +n_etoiles: int(1)
+        +message: text
+    }
+
+    class Logs {
+        +id: int
+        +user_id: int
+        +receiver_id: int
+        +action: varchar(100)
+        +details: text
+        +created_at: timestamp
+    }
+
+    class LoginAttempts {
+        +id: int
+        +email: varchar(255)
+        +success: varchar(255)
+        +attempt_time: timestamp
+    }
+
+    Users "1" *-- "0..*" Enfants : a
+    Users "1" *-- "0..*" Abonnements : souscrit
+    Enfants "1" *-- "0..*" Abonnements : a
+    Enfants "1" *-- "0..*" Presences : a
+    Garderies "1" *-- "0..*" Users : gère
+    Garderies "1" *-- "0..*" Presences : enregistre
+    Users "1" *-- "0..*" Avis : donne
+    Garderies "1" *-- "0..*" Avis : reçoit
+    Users "1" *-- "0..*" Logs : effectue
+    Users "1" *-- "0..*" LoginAttempts : tente

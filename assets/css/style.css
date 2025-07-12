@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap");
+:root {
+  --white: #f2f2f2;
+  --black: #323232;
+  --blue: #120A86;
+  --red: #ab2121;
+  --green: #2a6b12;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  resize: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 45px;
+  background-color: #ffffff;
+  padding: 20px;
+}
+.container .left, .container .right {
+  width: 50%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+.container .left {
+  border-radius: 45px;
+  background-color: var(--blue);
+  color: var(--white);
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.container .left img {
+  width: 250px;
+  height: 250px;
+}
+.container .left h1 {
+  color: var(--white);
+  text-transform: uppercase;
+  font-size: 3rem;
+  letter-spacing: 5px;
+  font-weight: 600;
+}
+.container .right {
+  gap: 20px;
+  align-items: start;
+  justify-content: center;
+}
+.container .right .input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.container .right .input input {
+  padding: 7px;
+  border-radius: 5px;
+  box-shadow: 0 0 2px 0 var(--black);
+}
+.container .right .input a {
+  font-size: 0.8rem;
+  text-decoration: underline;
+  margin: 10px 0 0 0;
+}
+.container .right button {
+  background-color: var(--blue);
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: var(--white);
+  font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+  }
+  .container .left, .container .right {
+    width: 100%;
+    padding: 20px;
+  }
+  .container .left {
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    align-items: center;
+    justify-content: center;
+  }
+  .container .left img {
+    width: 75px;
+    height: 75px;
+  }
+  .container .left h1 {
+    font-size: 1.5rem;
+  }
+  .container .right .input label {
+    font-size: 0.8rem;
+  }
+  .container .right .input input {
+    padding: 5px;
+  }
+}
