@@ -59,8 +59,7 @@ mini_chat/
 │   └── 📁 images/            # Images et icônes
 ├── 📁 documents_projet/       # Documentation projet
 │   ├── minichat.sql          # Structure base de données
-│   ├── diagramme de class.mermaid
-│   └── diagramme de class.png
+│   └── diagramme_de_class.png # Diagramme de classe
 ├── index.php                  # Page de connexion
 ├── forgot_password.php        # Récupération mot de passe
 ├── php_server.bat            # Script de démarrage serveur
